@@ -155,4 +155,11 @@ You can set custom actions of different types of bots to:
 
 You can access WAF logs from a storage account, event hub, log analytics, or send logs to a partner solution.
 
-For more information about Application Gateway bot protection, see Web Application Firewall on Application Gateway bot protection.
+For more information about Application Gateway bot protection, check out [Web Application Firewall on Application Gateway bot protection.](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/bot-protection-overview)
+
+## WAF modes
+
+- `Detection mode`: Monitors and logs all threat alerts. You turn on logging diagnostics for Application Gateway in the _Diagnostics section_. You must also _make sure that the WAF log is selected and turned on_.
+  > Web application firewall doesn't block incoming requests when it's operating in Detection mode.
+- `Prevention mode`: Blocks intrusions and attacks that the rules detect. The attacker receives a "403 unauthorized access" exception, and the connection is closed. Prevention mode records such attacks in the WAF logs.
+  
