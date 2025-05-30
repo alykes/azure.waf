@@ -14,7 +14,7 @@ This enables you to define **separate policies** for **each site** behind your A
 
 > Application Gateway has two versions of the WAF SKU: Application Gateway WAF_v1 and Application Gateway WAF_v2. WAF policy associations are only supported for the Application Gateway WAF_v2 SKU.
 
-[!Image](./appGW_WAF.png)
+[![Image]](./appGW_WAF.png)
 
 ## Benefits
 
@@ -126,9 +126,9 @@ Bad bots are bots with malicious IP addresses and bots that have falsified their
 - Good
 
 Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
-// cspell:disable-line     - verified search engine bots (such as Googlebot and Bingbot)
+    - verified search engine bots (such as Googlebot and Bingbot)
     - validated link checker bots
-// cspell:disable-line     - verified social media bots (such as Facebookbot and LinkedInBot)
+    - verified social media bots (such as Facebookbot and LinkedInBot)
     - verified advertising bots
     - verified content checker bots
     - validated miscellaneous bots
