@@ -14,7 +14,7 @@ This enables you to define **separate policies** for **each site** behind your A
 
 > Application Gateway has two versions of the WAF SKU: Application Gateway WAF_v1 and Application Gateway WAF_v2. WAF policy associations are only supported for the Application Gateway WAF_v2 SKU.
 
-[![Image]](./appGW_WAF.png)
+![Image](./appGW_WAF.png)
 
 ## Benefits
 
