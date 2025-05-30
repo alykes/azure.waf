@@ -237,7 +237,7 @@ Azure Monitor Workbook for WAF enables custom visualization of security-relevant
 Application Gateway WAF provides detailed reporting on each threat that it detects.
 > Logging is integrated with Azure Diagnostics logs. Alerts are recorded in JSON format. These logs can be integrated with Azure Monitor logs.
 
-    ```json
+```json
 {
   "resourceId": "/SUBSCRIPTIONS/{subscriptionId}/RESOURCEGROUPS/{resourceGroupId}/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/{appGatewayName}",
   "operationName": "ApplicationGatewayFirewall",
