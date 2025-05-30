@@ -119,11 +119,15 @@ You can enable a managed bot protection rule set to take custom actions on reque
 
 Three bot categories are supported:
 
-- Bad
+- **Bad**
 
-Bad bots are bots with malicious IP addresses and bots that have falsified their identities. Bad bots include malicious IP addresses that are sourced from the Microsoft Threat Intelligence feed’s high confidence IP Indicators of Compromise and IP reputation feeds. Bad bots also include bots that identify themselves as good bots but their IP addresses don’t belong to legitimate bot publishers.
+Bad bots are bots with:
+    - malicious IP addresses
+    - bots that have falsified their identities.
 
-- Good
+Bad bots include malicious IP addresses that are sourced from the **Microsoft Threat Intelligence** feed’s **high confidence** IP Indicators of Compromise and IP reputation feeds. Bad bots also include bots that identify themselves as good bots but their _IP addresses don’t belong to legitimate bot publishers_.
+
+- **Good**
 
 Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
     - verified search engine bots (such as Googlebot and Bingbot)
@@ -133,13 +137,18 @@ Good Bots are trusted user agents. Good bot rules are categorized into multiple 
     - verified content checker bots
     - validated miscellaneous bots
 
-- Unknown
+- **Unknown**
 
-Unknown bots are user agents without additional validation. Unknown bots also include malicious IP addresses that are sourced from Microsoft Threat Intelligence feed’s medium confidence IP Indicators of Compromise.
+Unknown bots are user agents without additional validation. Unknown bots also include malicious IP addresses that are sourced from **Microsoft Threat Intelligence** feed’s **medium confidence** IP Indicators of Compromise.
 
 The WAF platform actively manages and dynamically updates the bot signatures.
 
-When Bot protection is enabled, it blocks, allows, or logs incoming requests that match bot rules based on the configured action. It blocks malicious bots, allows verified search engine crawlers, blocks unknown search engine crawlers, and logs unknown bots by default. You can set custom actions to block, allow, or log different types of bots.
+When Bot protection is enabled, it **blocks**, **allows**, or **logs** incoming requests that match bot rules based on the configured action.  
+It blocks malicious bots, allows verified search engine crawlers, blocks unknown search engine crawlers, and logs unknown bots by default.  
+You can set custom actions of different types of bots to:
+    - block
+    - allow
+    - log
 
 You can access WAF logs from a storage account, event hub, log analytics, or send logs to a partner solution.
 
