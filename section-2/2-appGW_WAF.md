@@ -120,24 +120,22 @@ You can enable a managed bot protection rule set to take custom actions on reque
 Three bot categories are supported:
 
 - **Bad**
-
-Bad bots are bots with:
-
-    - malicious IP addresses
-    - bots that have falsified their identities.
+  
+  Bad bots are bots with:
+  - malicious IP addresses
+  - bots that have falsified their identities.
 
 Bad bots include malicious IP addresses that are sourced from the **Microsoft Threat Intelligence** feed’s **high confidence** IP Indicators of Compromise and IP reputation feeds. Bad bots also include bots that identify themselves as good bots but their _IP addresses don’t belong to legitimate bot publishers_.
 
 - **Good**
 
-Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
-
-    - verified search engine bots (such as Googlebot and Bingbot)
-    - validated link checker bots
-    - verified social media bots (such as Facebookbot and LinkedInBot)
-    - verified advertising bots
-    - verified content checker bots
-    - validated miscellaneous bots
+  Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
+  - verified search engine bots (such as Googlebot and Bingbot)
+  - validated link checker bots
+  - verified social media bots (such as Facebookbot and LinkedInBot)
+  - verified advertising bots
+  - verified content checker bots
+  - validated miscellaneous bots
 
 - **Unknown**
 
@@ -147,11 +145,12 @@ The WAF platform actively manages and dynamically updates the bot signatures.
 
 When Bot protection is enabled, it **blocks**, **allows**, or **logs** incoming requests that match bot rules based on the configured action.  
 It blocks malicious bots, allows verified search engine crawlers, blocks unknown search engine crawlers, and logs unknown bots by default.  
+
 You can set custom actions of different types of bots to:
 
-    - block
-    - allow
-    - log
+- block
+- allow
+- log
 
 You can access WAF logs from a storage account, event hub, log analytics, or send logs to a partner solution.
 
@@ -162,4 +161,113 @@ For more information about Application Gateway bot protection, check out [Web Ap
 - `Detection mode`: Monitors and logs all threat alerts. You turn on logging diagnostics for Application Gateway in the _Diagnostics section_. You must also _make sure that the WAF log is selected and turned on_.
   > Web application firewall doesn't block incoming requests when it's operating in Detection mode.
 - `Prevention mode`: Blocks intrusions and attacks that the rules detect. The attacker receives a "403 unauthorized access" exception, and the connection is closed. Prevention mode records such attacks in the WAF logs.
-  
+
+## WAF engine
+
+The **Web Application Firewall (WAF)** engine is the component that inspects traffic and detects whether a request contains a signature indicating a potential attack. When you use **CRS 3.2 or later**, your Web Application Firewall runs the new WAF engine, which gives you higher performance and an improved set of features. When you use earlier versions of the CRS, your WAF runs on an older engine.
+
+## WAF actions
+
+You can choose which action is run when a request matches a rule condition. The following actions are supported:
+
+- `Allow`: Request passes through the WAF and is forwarded to the back-end. _No further lower priority rules can block this request._
+  > Allow actions are only applicable to the Bot Manager ruleset, and aren't applicable to the Core Rule Set.
+- `Block`: The request is blocked and WAF sends a response to the client without forwarding the request to the back-end.
+- `Log`: Request is logged in the WAF logs and **WAF continues evaluating lower priority rules**.
+- `Anomaly score`: The _default action for CRS ruleset_ where total anomaly score is incremented when a rule with this action is matched.
+  > Anomaly scoring isn't applicable for the Bot Manager ruleset.
+
+## Anomaly Scoring mode
+
+OWASP has two modes for deciding whether to block traffic:
+
+- `Traditional mode`
+- `Anomaly Scoring mode`
+
+In **Traditional mode**, traffic that matches any rule is considered independently of any other rule matches. This mode is easy to understand. But the lack of information about how many rules match a specific request is a limitation. So, Anomaly Scoring mode was introduced. **It's the default for OWASP 3.x.**
+
+In **Anomaly Scoring mode**, traffic that matches any rule isn't immediately blocked when the firewall is in Prevention mode. Rules have a certain severity:
+
+- Critical
+- Error
+- Warning
+- Notice
+
+That severity affects a numeric value for the request, which is called the **Anomaly Score**. For example, one Warning rule match contributes `3` to the score. One Critical rule match contributes `5`.
+
+| Severity | Value |
+|----------|-------|
+| Critical | 5     |
+| Error    | 4     |
+| Warning  | 3     |
+| Notice   | 2     |
+
+**There's a threshold of 5 for the Anomaly Score to block traffic.** So, a single Critical rule match is enough for the Application Gateway WAF to block a request in Prevention mode. But one Warning rule match only increases the Anomaly Score by 3, which isn't enough by itself to block the traffic.
+
+## Configuration
+
+You can configure and deploy all WAF policies using the Azure portal, REST APIs, Azure Resource Manager templates, Terraform and Azure PowerShell. You can also configure and manage Azure WAF policies at scale using Firewall Manager integration. For more information, checkout [Configure WAF policies using Azure Firewall Manager.](https://learn.microsoft.com/en-us/azure/web-application-firewall/shared/manage-policies)
+
+## WAF monitoring
+
+Monitoring the health of your application gateway is important and can be achieved by integrating your WAF and the applications it protects with Microsoft Defender for Cloud, Azure Monitor, and Azure Monitor logs.
+
+![Image](./appGW_WAFMonitoring.png)
+
+### Azure Monitor
+
+Application Gateway logs are integrated with Azure Monitor, enabling you to track diagnostic information, including WAF alerts and logs. You can access this capability on the **Diagnostics tab** of the Application Gateway resource in the Azure portal or directly through Azure Monitor. To learn more about enabling logs, check out [Diagnostic logs for Application Gateway.](https://learn.microsoft.com/en-us/azure/application-gateway/application-gateway-diagnostics)
+
+### Microsoft Defender for Cloud
+
+Defender for Cloud helps prevent, detect, and respond to threats. It provides increased visibility into and control over the security of your Azure resources. Application Gateway is integrated with Defender for Cloud. Defender for Cloud scans your environment to detect unprotected web applications. It can recommend Application Gateway WAF to protect these vulnerable resources. You create the firewalls directly from Defender for Cloud. These WAF instances are integrated with Defender for Cloud. They send alerts and health information to Defender for Cloud for reporting.
+
+### Microsoft Sentinel
+
+Microsoft Sentinel is a scalable, cloud-native, security information event management (SIEM) and security orchestration automated response (SOAR) solution. Microsoft Sentinel delivers intelligent security analytics and threat intelligence across the enterprise, providing a single solution for alert detection, threat visibility, proactive hunting, and threat response.
+
+With the built-in Azure WAF firewall events workbook, you can get an overview of the security events on your WAF, including events, matched and blocked rules, and all other logged firewall activity.
+
+### Azure Monitor Workbook for WAF
+
+Azure Monitor Workbook for WAF enables custom visualization of security-relevant WAF events across several filterable panels. It works with all WAF types, including Application Gateway, Front Door, and CDN, and it can be filtered based on WAF type or a specific WAF instance. Import via ARM Template or Gallery Template. To deploy this workbook, check out [WAF Workbook.](https://aka.ms/AzWAFworkbook)
+
+## Logging
+
+Application Gateway WAF provides detailed reporting on each threat that it detects.
+> Logging is integrated with Azure Diagnostics logs. Alerts are recorded in JSON format. These logs can be integrated with Azure Monitor logs.
+
+    ```json
+{
+  "resourceId": "/SUBSCRIPTIONS/{subscriptionId}/RESOURCEGROUPS/{resourceGroupId}/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/{appGatewayName}",
+  "operationName": "ApplicationGatewayFirewall",
+  "time": "2017-03-20T15:52:09.1494499Z",
+  "category": "ApplicationGatewayFirewallLog",
+  "properties": {
+    {
+      "instanceId": "ApplicationGatewayRole_IN_0",
+      "clientIp": "203.0.113.145",
+      "clientPort": "0",
+      "requestUri": "/",
+      "ruleSetType": "OWASP",
+      "ruleSetVersion": "3.0",
+      "ruleId": "920350",
+      "ruleGroup": "920-PROTOCOL-ENFORCEMENT",
+      "message": "Host header is a numeric IP address",
+      "action": "Matched",
+      "site": "Global",
+      "details": {
+        "message": "Warning. Pattern match \"^[\\\\d.:]+$\" at REQUEST_HEADERS:Host ....",
+        "data": "127.0.0.1",
+        "file": "rules/REQUEST-920-PROTOCOL-ENFORCEMENT.conf",
+        "line": "791"
+      },
+      "hostname": "127.0.0.1",
+      "transactionId": "16861477007022634343"
+      "policyId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/drewRG/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/globalWafPolicy",
+      "policyScope": "Global",
+      "policyScopeName": " Global "
+    }
+  }
+}
+```
