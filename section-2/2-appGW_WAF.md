@@ -111,4 +111,36 @@ With custom rules, you can create your own rules, which are evaluated for each r
 
 If a set of conditions is met, an action is taken to **allow** or **block**. For more information on custom rules, see [Custom rules for Application Gateway.](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/custom-waf-rules-overview)
 
-The geo-match operator is now available for custom rules. See [Geo-match custom rules](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/custom-waf-rules-overview#geomatch-custom-rules) for more information.
+There is a geo-match operator available for custom rules. See [Geo-match custom rules](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/custom-waf-rules-overview#geomatch-custom-rules) for more information.
+
+## Bot protection rule set
+
+You can enable a managed bot protection rule set to take custom actions on requests from all bot categories.
+
+Three bot categories are supported:
+
+- Bad
+
+Bad bots are bots with malicious IP addresses and bots that have falsified their identities. Bad bots include malicious IP addresses that are sourced from the Microsoft Threat Intelligence feed’s high confidence IP Indicators of Compromise and IP reputation feeds. Bad bots also include bots that identify themselves as good bots but their IP addresses don’t belong to legitimate bot publishers.
+
+- Good
+
+Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
+// cspell:disable-line     - verified search engine bots (such as Googlebot and Bingbot)
+    - validated link checker bots
+// cspell:disable-line     - verified social media bots (such as Facebookbot and LinkedInBot)
+    - verified advertising bots
+    - verified content checker bots
+    - validated miscellaneous bots
+
+- Unknown
+
+Unknown bots are user agents without additional validation. Unknown bots also include malicious IP addresses that are sourced from Microsoft Threat Intelligence feed’s medium confidence IP Indicators of Compromise.
+
+The WAF platform actively manages and dynamically updates the bot signatures.
+
+When Bot protection is enabled, it blocks, allows, or logs incoming requests that match bot rules based on the configured action. It blocks malicious bots, allows verified search engine crawlers, blocks unknown search engine crawlers, and logs unknown bots by default. You can set custom actions to block, allow, or log different types of bots.
+
+You can access WAF logs from a storage account, event hub, log analytics, or send logs to a partner solution.
+
+For more information about Application Gateway bot protection, see Web Application Firewall on Application Gateway bot protection.
