@@ -241,12 +241,12 @@ Application Gateway WAF provides detailed reporting on each threat that it detec
 {
   "resourceId": "/SUBSCRIPTIONS/{subscriptionId}/RESOURCEGROUPS/{resourceGroupId}/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/{appGatewayName}",
   "operationName": "ApplicationGatewayFirewall",
-  "time": "2017-03-20T15:52:09.1494499Z",
+  "time": "2025-05-20T15:52:09.1494499Z",
   "category": "ApplicationGatewayFirewallLog",
   "properties": {
     {
       "instanceId": "ApplicationGatewayRole_IN_0",
-      "clientIp": "203.0.113.145",
+      "clientIp": "203.0.34.12",
       "clientPort": "0",
       "requestUri": "/",
       "ruleSetType": "OWASP",
@@ -263,7 +263,7 @@ Application Gateway WAF provides detailed reporting on each threat that it detec
         "line": "791"
       },
       "hostname": "127.0.0.1",
-      "transactionId": "16861477007022634343"
+      "transactionId": "16861477007022634343",
       "policyId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/drewRG/providers/Microsoft.Network/ApplicationGatewayWebApplicationFirewallPolicies/globalWafPolicy",
       "policyScope": "Global",
       "policyScopeName": " Global "
@@ -271,3 +271,5 @@ Application Gateway WAF provides detailed reporting on each threat that it detec
   }
 }
 ```
+
+Next Chapter: FrontDoor WAF
