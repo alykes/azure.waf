@@ -122,6 +122,7 @@ Three bot categories are supported:
 - **Bad**
 
 Bad bots are bots with:
+
     - malicious IP addresses
     - bots that have falsified their identities.
 
@@ -130,6 +131,7 @@ Bad bots include malicious IP addresses that are sourced from the **Microsoft Th
 - **Good**
 
 Good Bots are trusted user agents. Good bot rules are categorized into multiple categories to provide granular control over WAF policy configuration. These categories include:
+
     - verified search engine bots (such as Googlebot and Bingbot)
     - validated link checker bots
     - verified social media bots (such as Facebookbot and LinkedInBot)
