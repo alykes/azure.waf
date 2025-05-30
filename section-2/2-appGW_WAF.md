@@ -148,6 +148,7 @@ The WAF platform actively manages and dynamically updates the bot signatures.
 When Bot protection is enabled, it **blocks**, **allows**, or **logs** incoming requests that match bot rules based on the configured action.  
 It blocks malicious bots, allows verified search engine crawlers, blocks unknown search engine crawlers, and logs unknown bots by default.  
 You can set custom actions of different types of bots to:
+
     - block
     - allow
     - log
