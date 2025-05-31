@@ -142,5 +142,5 @@ You can configure and deploy all WAF policies by using the Azure portal, REST AP
 
 Monitoring for a WAF on Azure Front Door is **integrated with Azure Monitor** to track alerts and easily monitor traffic trends. For more information, check out [Azure Web Application Firewall monitoring and logging.](https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/waf-front-door-monitor)
 
-Next Section: [Microsoft Learn Course notes on WAF](../section-4/msLearnWAF.md)
+Next Section: [Microsoft Learn Course notes on WAF](../section-4/msLearnWAF.md)  
 Previous Section: [Application Gateway WAF](../section-2/2-appGW_WAF.md)
