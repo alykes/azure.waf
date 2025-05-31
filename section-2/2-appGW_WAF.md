@@ -272,5 +272,5 @@ Application Gateway WAF provides detailed reporting on each threat that it detec
 }
 ```
 
-Next Section: [FrontDoor WAF](../section-3/3-frontDoor-WAF.md)
+Next Section: [FrontDoor WAF](../section-3/3-frontDoor-WAF.md)  
 Previous Section: [Introduction](../section-1/1-intro.md)
