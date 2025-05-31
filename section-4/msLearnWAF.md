@@ -130,12 +130,13 @@ You can deploy Azure Web Application Firewall as part of an Azure front-end solu
 **Azure Web Application Firewall thwarts known exploits by applying rules to an app's incoming HTTP/HTTPS requests.** A rule is a firewall code designed to recognize and prevent a particular threat.
 
 The rules that Azure Web Application Firewall uses to detect and block common vulnerabilities are mostly managed rules that belong to various rule groups.  
-Each **rule group** is a collection of **rules**.  
-A **managed rule set** is collection of **rule groups**.  
-**Managed rule sets** include **Microsoft Threat Intelligence** based _rule groups_, **CVE** (Common Vulnerabilities and Exposures) _rule groups_, and **core** _rule groups_ (CRS).
 
-Open Web Application Security Project (OWASP) defines the CRS rules.  
-Microsoft's team of security experts codes, maintains, and updates managed rules. The rules are modified or added to as needed. When a managed rule changes, Microsoft updates Azure Web Application Firewall automatically and without app downtime.
+- Each **rule group** is a collection of **rules**.  
+- A **managed rule set** is collection of **rule groups**.  
+- **Managed rule sets** include **Microsoft Threat Intelligence** based _rule groups_, **CVE** (Common Vulnerabilities and Exposures) _rule groups_, and **core** _rule groups_ (CRS).
+
+> Open Web Application Security Project (OWASP) defines the CRS rules.  
+> Microsoft's team of security experts codes, maintains, and updates managed rules. The rules are modified or added to as needed. When a managed rule changes, Microsoft updates Azure Web Application Firewall automatically and without app downtime.
 
 The following screenshot shows some of the rules and rule groups in Microsoft Default Rule set 2.1 (DRS2.1). This should give you a sense of the depth of protection offered by Azure Web Application Firewall.
 
