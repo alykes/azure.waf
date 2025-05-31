@@ -14,7 +14,7 @@ This enables you to define **separate policies** for **each site** behind your A
 
 > Application Gateway has two versions of the WAF SKU: Application Gateway WAF_v1 and Application Gateway WAF_v2. WAF policy associations are only supported for the Application Gateway WAF_v2 SKU.
 
-![Image](./appGW_WAF.png)
+![Image](.images/appGW_WAF.png)
 
 ## Benefits
 
@@ -212,7 +212,7 @@ You can configure and deploy all WAF policies using the Azure portal, REST APIs,
 
 Monitoring the health of your application gateway is important and can be achieved by integrating your WAF and the applications it protects with Microsoft Defender for Cloud, Azure Monitor, and Azure Monitor logs.
 
-![Image](./appGW_WAFMonitoring.png)
+![Image](.images/appGW_WAFMonitoring.png)
 
 ### Azure Monitor
 
