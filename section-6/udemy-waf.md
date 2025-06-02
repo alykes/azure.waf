@@ -171,6 +171,7 @@ Policy Settings:
 
 - Enable request body inspection
 - Redirect URL
+  > You can only have one redirect URL per policy
 - Block response status code - (200,403,405,406,429,990,991,992,993,994,995,996,997,998,999 are the only supported status codes)
 - Block response body
 - Add a custom response message when a request is blocked by a WAF rule.
