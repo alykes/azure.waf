@@ -10,4 +10,3 @@ In this tutorial, you learn how to:
 - Test the application gateway
 
 ![Image](.images/module5-1.png)
-
