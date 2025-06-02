@@ -25,6 +25,16 @@ You have managed rules (microsoft rules) and custom rules (user defined). Custom
 - Global WAF (**FrontDoor**)
 - Regional WAF (**Application Gateway**)
 
+You can apply WAF policies to an application gateway at various levels in the hierarchy, they are:  
+
+- The Application Gateway
+- An HTTP Listener
+- Route Path
+  
+There is an order of precedence in the way that the rules are evaluated. Any rules that are applied to a more granular level of the application gateway will take precedence. That is:
+
+Route Path > HTTP listener > Application Gateway
+
 ## WAF Modes
 
 To switch the WAF from detection to prevention, you do this on the Overview of the WAF Policy. Remember that detection only logs the events, whereas prevention blocks the rules or performs whatever action you specify.
